@@ -1,0 +1,43 @@
+{
+  "batchcomplete": "",
+  "continue": {
+    "grncontinue": "0.280918412649|0.280918922406|740971|0",
+    "continue": "grncontinue||"
+  },
+  "query": {
+    "pages": {
+      "38306832": {
+        "pageid": 38306832,
+        "ns": 0,
+        "title": "My Page Title",
+        "revisions": [
+          {
+            "slots": {
+              "main": {
+                "contentmodel": "wikitext",
+                "contentformat": "text/x-wiki",
+                "*": "My Page Content"
+              }
+            }
+          }
+        ]
+      },
+      "38306877": {
+        "pageid": 38306877,
+        "ns": 0,
+        "title": "My Page Title 2",
+        "revisions": [
+          {
+            "slots": {
+              "main": {
+                "contentmodel": "wikitext",
+                "contentformat": "text/x-wiki",
+                "*": "My Page Content 2"
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}
