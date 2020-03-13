@@ -18,7 +18,7 @@ import java.util.List;
 public class WikipediaCustomAnalyzer extends Analyzer {
     private static final List<String> customStopWords = Arrays.asList(
             "ref", "title", "reflist", "reference", "cite", "accessdate", "http", "from",
-            "references", "url", "id", "category", "image", "image_caption", "infobox", "links"
+            "references", "url", "id", "category", "image", "image_caption", "infobox", "links", "https"
     );
     private static final CharArraySet customStopSet = new CharArraySet(customStopWords, false);
     private static final CharArraySet CUSTOM_STOP_WORDS_SET = CharArraySet.unmodifiableSet(customStopSet);
