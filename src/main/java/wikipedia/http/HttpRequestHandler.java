@@ -2,6 +2,7 @@ package wikipedia.http;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -16,6 +17,7 @@ import java.util.zip.GZIPInputStream;
 /**
  * Helper class to send http requests and process their result
  */
+@Component
 public class HttpRequestHandler {
 
     private final static Logger logger = LoggerFactory.getLogger(HttpRequestHandler.class.getName());
