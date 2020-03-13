@@ -1,10 +1,18 @@
 package wikipedia.api.serialization.types;
 
+/**
+ * Java type to represent a top term in the set of indexed terms as a Json object
+ */
 public class TopTerm {
 
     private String term;
     private int count;
 
+    /**
+     *
+     * @param term indexed term
+     * @param count number of occurrences of the term in the index
+     */
     public TopTerm(String term, int count) {
         this.term = term;
         this.count = count;

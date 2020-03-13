@@ -2,6 +2,9 @@ package wikipedia.api.serialization.types;
 
 import java.util.List;
 
+/**
+ * Java type representing a WikiMedia PageList Json object
+ */
 public class PageList {
     private List<Page> pages;
 

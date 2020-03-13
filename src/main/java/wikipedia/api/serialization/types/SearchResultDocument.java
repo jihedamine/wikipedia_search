@@ -1,10 +1,19 @@
 package wikipedia.api.serialization.types;
 
+/**
+ * Java type to represent a search result document as a Json object
+ */
 public class SearchResultDocument {
     private String title;
     private float score;
     private String content;
 
+    /**
+     *
+     * @param title title of the WikiMedia page matching the query
+     * @param score relevance score of the page as a result of the query
+     * @param content content of the page
+     */
     public SearchResultDocument(String title, float score, String content) {
         this.title = title;
         this.score = score;

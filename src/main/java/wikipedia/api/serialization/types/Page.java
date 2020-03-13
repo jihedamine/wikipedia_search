@@ -4,6 +4,9 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
+/**
+ * Java type representing a WikiMedia Page Json object
+ */
 public class Page {
     private String title;
     private List<Revision> revisions;

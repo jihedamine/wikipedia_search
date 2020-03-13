@@ -11,6 +11,10 @@ import org.springframework.web.context.request.WebRequest;
 
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * Rest controller to intercept exceptions thrown by the Rest services
+ * The controller logs the exception and displays an error page with relevant information
+ */
 @RestController
 public class WikipediaErrorController implements ErrorController {
     private final static Logger logger = LoggerFactory.getLogger(WikipediaErrorController.class.getName());

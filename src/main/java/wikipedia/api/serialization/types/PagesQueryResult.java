@@ -5,7 +5,7 @@ import wikipedia.exceptions.JsonDeserializationException;
 import java.util.Collection;
 
 /**
- * Models a json query result from WikiMedia's API as a Java object
+ * Java type representing a WikiMedia PagesQueryResult Json Object
  */
 public class PagesQueryResult {
     private Query query;

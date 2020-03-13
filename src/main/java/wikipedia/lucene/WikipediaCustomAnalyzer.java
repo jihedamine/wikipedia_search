@@ -15,6 +15,10 @@ import java.io.Reader;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Custom analyzer to parse English words from Wikipedia's english content
+ * Excludes irrelevant words that occur often in the pages content, such as "http", "title", etc
+ */
 public class WikipediaCustomAnalyzer extends Analyzer {
     private static final List<String> customStopWords = Arrays.asList(
             "ref", "title", "reflist", "reference", "cite", "accessdate", "http", "from",

@@ -37,18 +37,39 @@ public class WikipediaSearchService {
         }
     }
 
+    /**
+     * Returns the list of WikiMedia pages loaded when initializing the search service
+     * @return the list of WikiMedia pages loaded when initializing the search service
+     */
     public Collection<Page> getPages() {
         return Collections.unmodifiableCollection(pages);
     }
 
+    /**
+     * Returns the number of indexed terms in the indexed content of the WikiMedia pages
+     * @return the number of indexed terms in the indexed content of the WikiMedia pages
+     */
     public TermsCount getIndexedTerms() throws Exception {
-        return luceneIndexer.getIndexedTerms();
+        return luceneIndexer.getIndexedTermsCount();
     }
 
+    /**
+     * Returns the most frequent terms in the indexed content of the WikiMedia pages
+     * @param nbTerms number of most frequent terms to return
+     * @return the most frequent terms in the indexed content of the WikiMedia pages
+     * @throws Exception if an error happens when getting the most frequent terms from the lucene index
+     */
     public List<TopTerm> getTopTerms(int nbTerms) throws Exception {
         return luceneIndexer.getTopTerms(nbTerms);
     }
 
+    /**
+     * Runs a search on the lucene index of the WikiMedia pages and returns a list of matching results with a relevance score
+     * @param query the query string
+     * @return a list of matching WikiMedia page titles and contents, along with a relevance score according to the search query
+     * @throws IOException if an I/O error occurs
+     * @throws ParseException when failing to parse the query with an analyzer
+     */
     public List<SearchResultDocument> getSearchResults(String query) throws IOException, ParseException {
         return luceneIndexer.getSearchResults(query);
     }

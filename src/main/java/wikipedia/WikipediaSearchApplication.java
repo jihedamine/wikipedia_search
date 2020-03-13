@@ -10,6 +10,9 @@ import org.springframework.core.env.Environment;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
+/**
+ * Main class to run the rest server using Spring Boot
+ */
 @SpringBootApplication
 public class WikipediaSearchApplication {
     private final static Logger logger = LoggerFactory.getLogger(WikipediaSearchApplication.class.getName());

@@ -1,5 +1,8 @@
 package wikipedia.api.serialization.types;
 
+/**
+ * Java type to represent a term count as a Json object
+ */
 public class TermsCount {
     private long termsCount;
 
