@@ -1,13 +1,13 @@
-package wikipedia.api.deserialization;
+package wikipedia.api.serialization;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import wikipedia.api.deserialization.PagesQueryResultAdapter;
+import wikipedia.api.serialization.types.Page;
 import wikipedia.exceptions.JsonDeserializationException;
-import wikipedia.api.deserialization.types.PagesQueryResult;
+import wikipedia.api.serialization.types.PagesQueryResult;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -54,9 +54,9 @@ class PagesQueryResultAdapterTest {
             JsonElement jsonElement = JsonParser.parseReader(reader);
             JsonObject jsonObject = jsonElement.getAsJsonObject();
             String jsonString = jsonObject.toString();
-            Collection<PagesQueryResult.Page> pageCollection = pagesQueryResultAdapter.getPages(jsonString);
+            Collection<Page> pageCollection = pagesQueryResultAdapter.getPages(jsonString);
             assertThat(pageCollection).hasSize(1);
-            PagesQueryResult.Page page = pageCollection.iterator().next();
+            Page page = pageCollection.iterator().next();
             assertThat(page.getTitle()).isEqualTo("My Page Title");
             assertThat(page.getContent()).isEqualTo("My Page Content");
         }
@@ -69,9 +69,9 @@ class PagesQueryResultAdapterTest {
             JsonElement jsonElement = JsonParser.parseReader(reader);
             JsonObject jsonObject = jsonElement.getAsJsonObject();
             String jsonString = jsonObject.toString();
-            Collection<PagesQueryResult.Page> pageCollection = pagesQueryResultAdapter.getPages(jsonString);
+            Collection<Page> pageCollection = pagesQueryResultAdapter.getPages(jsonString);
             assertThat(pageCollection).hasSize(2);
-            for (PagesQueryResult.Page page : pageCollection) {
+            for (Page page : pageCollection) {
                 assertThat(page.getTitle()).satisfiesAnyOf(
                         title -> assertThat(title).isEqualTo("My Page Title"),
                         title -> assertThat(title).isEqualTo("My Page Title 2")

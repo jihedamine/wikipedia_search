@@ -2,8 +2,8 @@ package wikipedia.api.service;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import wikipedia.api.deserialization.types.PagesQueryResult;
-import wikipedia.api.service.ApiService;
+import wikipedia.api.serialization.types.Page;
+import wikipedia.api.serialization.types.PagesQueryResult;
 
 import java.io.IOException;
 import java.util.Collection;
@@ -26,7 +26,7 @@ class ApiServiceIntegrationTest {
      */
     @Test
     public void apiServiceIntegrationTest() throws IOException, InterruptedException {
-        Collection<PagesQueryResult.Page> pages = apiService.getPagesContent(3);
+        Collection<Page> pages = apiService.getPagesContent(3);
         assertThat(pages).hasSize(3);
     }
 
