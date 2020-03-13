@@ -24,7 +24,7 @@ The application exposes a simple REST API that provides the following capabiliti
 
 All responses from the API are in JSON format.
 
-##Running the application
+## Running the application
 
 The source code language level is Java 11, so you need a JDK 11 or a more recent version to compile the code.
 
