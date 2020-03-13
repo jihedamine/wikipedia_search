@@ -25,6 +25,7 @@ The application exposes a simple REST API that provides the following capabiliti
 All responses from the API are in JSON format.
 
 ##Running the application
+
 The source code language level is Java 11, so you need a JDK 11 or more recent to compile the code.
 
 To Run the application, clone this repository and open a terminal at the root folder of the repository.
