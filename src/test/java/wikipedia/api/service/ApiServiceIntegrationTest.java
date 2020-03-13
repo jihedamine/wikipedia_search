@@ -1,23 +1,20 @@
 package wikipedia.api.service;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import wikipedia.api.serialization.types.Page;
-import wikipedia.api.serialization.types.PagesQueryResult;
 
 import java.io.IOException;
 import java.util.Collection;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@SpringBootTest
 class ApiServiceIntegrationTest {
 
+    @Autowired
     private ApiService apiService;
-
-    @BeforeEach
-    public void setUp() {
-        apiService = new ApiService();
-    }
 
     /**
      * For the integration test to succeed:
