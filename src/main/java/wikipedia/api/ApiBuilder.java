@@ -10,7 +10,7 @@ import java.net.URI;
 public class ApiBuilder {
 
     private static final int CONTENT_ARTICLE_NAMESPACE_CODE = 0;
-    public static final String MAX_LAG_SECONDS = "60";
+    private static final String MAX_LAG_SECONDS = "60";
 
     /**
      * Get URI to fetch random pages using the WikiMedia API
