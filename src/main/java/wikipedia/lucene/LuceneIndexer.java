@@ -19,6 +19,8 @@ import org.apache.lucene.search.ScoreDoc;
 import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import wikipedia.api.serialization.types.Page;
@@ -38,16 +40,19 @@ import java.util.List;
 @Component
 public class LuceneIndexer {
 
-    public static final String PAGE_CONTENT_FIELD = "body";
-    public static final String PAGE_TITLE_FIELD = "title";
-    public static final int MAX_RESULTS = 100;
-    public static final String LUCENE_INDEX_PATH = "/tmp/lucene_index";
+    private final static Logger logger = LoggerFactory.getLogger(LuceneIndexer.class.getName());
+
+    private static final String PAGE_CONTENT_FIELD = "body";
+    private static final String PAGE_TITLE_FIELD = "title";
+    private static final int MAX_RESULTS = 100;
+    private static final String LUCENE_INDEX_PATH = "/tmp/lucene_index";
 
     private final Directory memoryIndex;
     private final Analyzer analyzer;
 
     @Autowired
     public LuceneIndexer() throws IOException {
+        logger.debug("Initializing lucene indexer");
         memoryIndex = FSDirectory.open(Paths.get(LUCENE_INDEX_PATH));
         analyzer = new WikipediaCustomAnalyzer();
     }
@@ -58,6 +63,7 @@ public class LuceneIndexer {
      * @throws IOException if an I/O error occurs
      */
     public void indexDocuments(Collection<Page> pages) throws IOException {
+        logger.info("Indexing WikiMedia pages in Lucene");
         var indexWriterConfig = new IndexWriterConfig(analyzer);
         indexWriterConfig.setOpenMode(IndexWriterConfig.OpenMode.CREATE);
         try (var indexWriter = new IndexWriter(memoryIndex, indexWriterConfig)) {
@@ -84,6 +90,7 @@ public class LuceneIndexer {
         document.add(new TextField(PAGE_CONTENT_FIELD, body, Field.Store.YES));
 
         indexWriter.addDocument(document);
+        logger.info("Indexed WikiMedia page with title {} in Lucene", title);
     }
 
     /**
@@ -94,6 +101,7 @@ public class LuceneIndexer {
     public TermsCount getIndexedTermsCount() throws IOException {
         try (var indexReader = DirectoryReader.open(memoryIndex)) {
             Terms terms = MultiTerms.getTerms(indexReader, PAGE_CONTENT_FIELD);
+            logger.info("Fetched {} terms from Lucene index of page contents", terms.size());
             return new TermsCount(terms.size());
         }
     }
@@ -105,6 +113,7 @@ public class LuceneIndexer {
      * @throws Exception if an error happens when getting the most frequent terms from the lucene index
      */
     public List<TopTerm> getTopTerms(int nbTerms) throws Exception {
+        logger.info("Getting top terms indexed for WikiMedia pages content in Lucene");
         try (var indexReader = DirectoryReader.open(memoryIndex)) {
             List<TopTerm> topTerms = new ArrayList<>();
             TermStats[] stats = HighFreqTerms.getHighFreqTerms(indexReader,
@@ -135,6 +144,7 @@ public class LuceneIndexer {
                 documents.add(new SearchResultDocument(document.get(PAGE_TITLE_FIELD),
                         scoreDoc.score, document.get(PAGE_CONTENT_FIELD)));
             }
+            logger.info("Found {} documents related to search query {}", documents.size(), queryString);
             return documents;
         }
     }
