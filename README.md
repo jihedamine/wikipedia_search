@@ -14,13 +14,27 @@ The application exposes a simple REST API that provides the following capabiliti
 
 `GET http://host:port/wikisearch/indexedTermsCount`
 
-- It returns a list of the top n terms, for each page
+- It returns a list of the top n terms
 
-`GET http://host:port/wikisearch/topTerms`
+`GET http://host:port/wikisearch/topTerms?nbTerms=<nbTerms>`
 
 - Given a search query, it returns the matching pages, in most relevant to least, along with a "score" which gives an indication of relative relevance
 
-`GET http://host:port/wikisearch/pages?query=<searchQuery>`
+`GET http://host:port/wikisearch/search?query=<searchQuery>`
 
 All responses from the API are in JSON format.
 
+##Running the application
+The source code language level is Java 11, so you need a JDK 11 or more recent to compile the code.
+
+To Run the application, clone this repository and open a terminal at the root folder of the repository.
+
+Either build a jar and run it:
+
+`$> mvn package`
+
+`$> java -jar target/wikipedia_search-1.0-SNAPSHOT.jar`
+
+Or directly run the spring boot maven goal
+
+`$> mvn spring-boot:run`
